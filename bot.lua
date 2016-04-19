@@ -288,54 +288,7 @@ end
 function msg_processor(msg)
 
 
-if msg.text:match('/p (.*)')then
-local matches = {string.match(msg.text,('/p (.*)'))}
-local input = get_word(matches[1])
-local lid = resolve_username(input)
-local phl =  getUserProfilePhotos(tonumber(lid))
-local file = phl.result.photos[1][1].file_id
-print(file)
-local url = BASE_URL .. '/getFile?file_id='..file
-	local res = HTTPS.request(url)
- local jres = JSON.decode(res)
-local caption = "his id :- "..lid
-
-sendPhotoID(msg.chat.id,file,caption)
-elseif msg.reply_to_message and msg.text == '/p' then
-local lid = msg.reply_to_message.from.id
-local phl =  getUserProfilePhotos(tonumber(lid))
-local file = phl.result.photos[1][1].file_id
-print(file)
-local url = BASE_URL .. '/getFile?file_id='..file
-	local res = HTTPS.request(url)
- local jres = JSON.decode(res)
-local caption = "his id :- "..lid
-
-sendPhotoID(msg.chat.id,file,caption)
-
-elseif msg.text == '/p' then
-local ph = getUserProfilePhotos(msg.from.id)
-local file = ph.result.photos[1][1].file_id
-local url = BASE_URL .. '/getFile?file_id='..file
-	local res = HTTPS.request(url)
-	local jres = JSON.decode(res)
-
-if msg.from.username ~= nil then
-msg.from.username = '@'..msg.from.username
-elseif msg.from.username == nil then
-msg.from.username = "you don't have"
-end
-local caption = 'your nam :- '..msg.from.first_name..'\nyour id :-'..msg.from.id..'\nyour username :- '..msg.from.username
-
-	sendPhotoID(msg.chat.id,file,caption)
-elseif msg.text:match('/id (.*)$') then
-local matches = {string.match(msg.text,('/id (.*)'))}
-		local input = get_word(matches[1])
-  id = resolve_username(input)
-sendMessage(msg.chat.id,id)
-end
-
-elseif msg.text == "/start" and not is_add(msg) then
+if msg.text == "/start" and not is_add(msg) then
  	table.insert(add.id,msg.from.id)
  	print("adding.....")
  	 	local user = ""
