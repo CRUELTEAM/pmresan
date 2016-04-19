@@ -285,6 +285,72 @@ function bot_run()
   ban.id = ban.id or {}
   add.broadcast = add.broadcast or {} --
 end
+
+function msg_processor(msg)
+
+	if msg.date < os.time() - 5 then -- Ignore old msgs
+		return
+    end
+
+if msg.text:match('/p (.*)')then
+local matches = {string.match(msg.text,('/p (.*)'))}
+local input = get_word(matches[1])
+local lid = resolve_username(input)
+local phl =  getUserProfilePhotos(tonumber(lid))
+local file = phl.result.photos[1][1].file_id
+print(file)
+local url = BASE_URL .. '/getFile?file_id='..file
+	local res = HTTPS.request(url)
+ local jres = JSON.decode(res)
+local caption = "his id :- "..lid
+
+sendPhotoID(msg.chat.id,file,caption)
+elseif msg.reply_to_message and msg.text == '/p' then
+local lid = msg.reply_to_message.from.id
+local phl =  getUserProfilePhotos(tonumber(lid))
+local file = phl.result.photos[1][1].file_id
+print(file)
+local url = BASE_URL .. '/getFile?file_id='..file
+	local res = HTTPS.request(url)
+ local jres = JSON.decode(res)
+local caption = "his id :- "..lid
+
+sendPhotoID(msg.chat.id,file,caption)
+
+elseif msg.text == '/p' then
+local ph = getUserProfilePhotos(msg.from.id)
+local file = ph.result.photos[1][1].file_id
+local url = BASE_URL .. '/getFile?file_id='..file
+	local res = HTTPS.request(url)
+	local jres = JSON.decode(res)
+
+if msg.from.username ~= nil then
+msg.from.username = '@'..msg.from.username
+elseif msg.from.username == nil then
+msg.from.username = "you don't have"
+end
+local caption = 'your nam :- '..msg.from.first_name..'\nyour id :-'..msg.from.id..'\nyour username :- '..msg.from.username
+
+	sendPhotoID(msg.chat.id,file,caption)
+elseif msg.text:match('/id (.*)$') then
+local matches = {string.match(msg.text,('/id (.*)'))}
+		local input = get_word(matches[1])
+  id = resolve_username(input)
+sendMessage(msg.chat.id,id)
+elseif msg.text:match('/w (.*) (.*)') then
+local matches = {string.match(msg.text,('/w (.*) (.*)'))}
+local lt = matches[1]:gsub("_"," ")
+local lr = matches[2]:gsub("_"," ")
+add.talk[lt]= lr
+elseif msg.text and add.talk[msg.text] ~= nil then
+local ion = add.talk[msg.text]
+local out = ion:gsub("_"," ")
+sendMessage(msg.chat.id,out,true,msg.message_id)
+elseif msg.from.username then
+		add.usernames[msg.from.username:lower()] = msg.from.id
+
+end
+end
 function msg_processor(msg)
 
 
