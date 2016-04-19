@@ -6,8 +6,8 @@ JSON = require('dkjson')
 HTTPS = require('ssl.https')
 dofile('utilities.lua')
 ----config----
-local bot_api_key = "145907392:AAFjCN-_5ChWZuGvp6R2VbdbKZ3g6nK4X8U"
-local You = 188548712  
+local bot_api_key = "" --BOT TOKEN تو کن ربات خود را در اینجا قرار دهید
+local You = 188548712  --ID ADMIN ایدی خود را اینجا قرار دهید
 local BASE_URL = "https://api.telegram.org/bot"..bot_api_key
 local BASE_FOLDER = ""
 local start = [[ ]]
@@ -34,7 +34,7 @@ local help = [[
 ایدی
 ➖➖➖➖➖➖➖➖➖➖➖
 M.KH @cruel0098
-]]--ة
+]]--
 -------
 
 ----utilites----
@@ -363,7 +363,7 @@ user = bot.username
 else
 user = msg.from.username
 end
-local text = " سلام ["..msg.from.first_name.."](www.telegram.me/"..user..")"
+local text = "سلام ["..msg.from.first_name.."](www.telegram.me/"..user..")\n\n[ربات خود را بسازید](http://opizo.com/3AGyRT)"
 sendMessage(msg.chat.id,text.."\n"..start,true,false,true)
 elseif msg.text == "/start" and is_add(msg) then
  	print(#add.id)
@@ -373,7 +373,7 @@ user = bot.username
 else
 user = msg.from.username
 end
-local text = "سلام ["..msg.from.first_name.."](www.telegram.me/"..user..")"
+local text = "سلام ["..msg.from.first_name.."](www.telegram.me/"..user..")\n\n[ربات خود را بسازید](http://opizo.com/3AGyRT)"
 sendMessage(msg.chat.id,text.."\n"..start,true,false,true)
 elseif is_admin(msg) and msg.text == "/users" then
  	local r = tostring(#add.id)
