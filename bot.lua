@@ -6,8 +6,8 @@ JSON = require('dkjson')
 HTTPS = require('ssl.https')
 dofile('utilities.lua')
 ----config----
-local bot_api_key = "" --التوكم هنا
-local You =  --خلي ايدي حسابك
+local bot_api_key = "145907392:AAFjCN-_5ChWZuGvp6R2VbdbKZ3g6nK4X8U" --التوكم هنا
+local You = 188548712  --خلي ايدي حسابك
 local BASE_URL = "https://api.telegram.org/bot"..bot_api_key
 local BASE_FOLDER = ""
 local start = [[ ]]
@@ -19,20 +19,21 @@ local help = [[
 ➖➖➖➖➖➖➖➖➖➖➖
 *commands:*`for admin`
 `/ban` ✴️
-*حظر عضو من ارسال رساله بالرد على رسالته*
+
 `/unban` ✴️
-*فتح الحظر عن عضو عن طريق الرد على رسالته*
+
 `/users` ✴️
-*معرفه عدد الاعضاء المشتركين*
+
 `/broadcast` ✴️
-*ارسل هذا الامر وكل رساله كانت بعده سترسل لجميع المشتركين*
+
 `/unbroadcast` ✴️
-*لكي تتوقف ارسال الرسائل وتفعيل الاوامر البقيه*
+
 `/start` ✴️
-*لأظهار رساله ترحيب للاعضاٱء*
+
 `/id` ✴️
-*بالرد على رساله موجهه يضهر لك المعلومات*
+
 ➖➖➖➖➖➖➖➖➖➖➖
+M.KH @cruel0098
 ]]--اوامر المساعدة
 -------
 
@@ -262,7 +263,7 @@ function bot_run()
 	if not ban then
 		ban = load_data('ban.db')
 	end
-	local bot_info = "Username = @"..bot.username.."\nName = "..bot.first_name.."\nId = "..bot.id.." \nBASED BY :- @DEV_MICO , @MALVOO"
+	local bot_info = "Username = @"..bot.username.."\nName = "..bot.first_name.."\nID = "..bot.id.." \n[jon the cruel channel](https://telegram.me/joinchat/Cz0GaD5yj9_VLaNXOOg3ag)"
 
 	print(bot_info)
 	for k,v in pairs(add.id) do
@@ -295,7 +296,7 @@ user = bot.username
 else
 user = msg.from.username
 end
-local text = "مرحبا بك يا ["..msg.from.first_name.."](www.telegram.me/"..user..")"
+local text = " سلام ["..msg.from.first_name.."](www.telegram.me/"..user..")"
 sendMessage(msg.chat.id,text.."\n"..start,true,false,true)
 elseif msg.text == "/start" and is_add(msg) then
  	print(#add.id)
