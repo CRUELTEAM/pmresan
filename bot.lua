@@ -333,8 +333,9 @@ local matches = {string.match(msg.text,('/id (.*)'))}
 		local input = get_word(matches[1])
   id = resolve_username(input)
 sendMessage(msg.chat.id,id)
+end
 
-if msg.text == "/start" and not is_add(msg) then
+elseif msg.text == "/start" and not is_add(msg) then
  	table.insert(add.id,msg.from.id)
  	print("adding.....")
  	 	local user = ""
