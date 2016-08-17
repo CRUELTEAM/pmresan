@@ -1,6 +1,3 @@
-# chatter-bot
-
-A simple telegram-bot wtitten in LUA 
 
 # commands
 `/ban`
@@ -26,7 +23,7 @@ A simple telegram-bot wtitten in LUA
 
 نوشته شده توسط
 
-M.KH @cruel0098
+M.KH @IT_MKH
 
 وارد فایل bot.lua شوید
 `````````````````````````````````````````````````````````````````````````````````
@@ -37,14 +34,17 @@ M.KH @cruel0098
 	````````````````````````````````````````````````````````````````````````````````
 	
 	بعد از اینکار در سرور مراحل زیر را انجام دهید
-	
+	```
 	git clone https://github.com/mohamadkhoshnava/idbot.git
+	```
 	بجای ادرس گیت بنده ادرس گیت خود را وارد کنید
-	
+	```
 	lua bot.lua
-	
+	```
 	بعد وارد ربات خود در تلگرام شده و دستور زیر را تایپ کنید
-	
+	```
 	/unbroadcast
-	
+	```
 	ربات شما حاظر است
+	
+	https://telegram.me/CH_NEWS
