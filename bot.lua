@@ -6,8 +6,8 @@ JSON = require('dkjson')
 HTTPS = require('ssl.https')
 dofile('utilities.lua')
 ----config----
-local bot_api_key = "" --BOT TOKEN تو کن ربات خود را در اینجا قرار دهید
-local You = 188548712  --ID ADMIN ایدی خود را اینجا قرار دهید
+local bot_api_key = "403021340:AAGZ2E-uWGLKfvWiSpyth9r_Yo1x2VPOQeU" --BOT TOKEN تو کن ربات خود را در اینجا قرار دهید
+local You = 199957800  --ID ADMIN ایدی خود را اینجا قرار دهید
 local BASE_URL = "https://api.telegram.org/bot"..bot_api_key
 local BASE_FOLDER = ""
 local start = [[ ]]
@@ -423,53 +423,3 @@ elseif is_admin(msg) and msg.reply_to_message and msg.text == "/id" then
  else
  	 last_name = ""
  end
- if msg.reply_to_message.forward_from.username ~= nil then
- 	 usernme = "\nUSERNAME : @"..msg.reply_to_message.forward_from.username
- else
- 	 usernme = ""
- end
- local E = "NAME : "..msg.reply_to_message.forward_from.first_name.." "..last_name..usernme.."\nID :"..msg.reply_to_message.forward_from.id
- sendMessage(msg.chat.id,E)
-
-elseif is_admin(msg) and msg.text == "/broadcast" then
-
-  add.broadcast = "unbroadcast"
-    sendMessage(msg.chat.id,"*I will send every thing u want*",true,false,true)
-save_data('mico.db', add)
-
-
-elseif not is_ban(msg) and msg.text ~= "/start" and msg.text ~= "/id" and msg.text ~= "/unban" and msg.text ~= "/ban" then
-if is_admin(msg) and msg.reply_to_message then
-forwardMessage(msg.reply_to_message.forward_from.id,msg.from.id,msg.message_id)
---print(msg.from.id)
-print(msg.reply_to_message.from.id)
-print(msg.reply_to_message.forward_from.id)
---print(msg.reply_to_message.from.id)
-print(msg.reply_to_message.message_id)
-elseif not is_admin(msg) then
-forwardMessage(You,msg.chat.id,msg.message_id)
-end
-end
-end
-end
-bot_run() -- Run main function
-while is_running do -- Start a loop witch receive messages.
-	local response = getUpdates(last_update+1) -- Get the latest updates using getUpdates method
-	if response then
-		for i,v in ipairs(response.result) do
-			last_update = v.update_id
-			msg_processor(v.message)
-		end
-	else
-		print("Conection failed")
-	end
-if last_cron ~= os.date('%M', os.time()) then -- Run cron jobs every minute.
-		last_cron = os.date('%M', os.time())
-		save_data('mico.db', add) -- Save the database.
-		save_data('ban.db', ban)
-
-			end
-end
-save_data('mico.db', add)
-save_data('ban.db', ban)
-print("Bot halted")
